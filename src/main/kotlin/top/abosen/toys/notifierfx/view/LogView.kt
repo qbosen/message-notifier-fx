@@ -20,11 +20,13 @@ class LogView : View() {
             isEditable = false
         }
 
-        button("append") {
-            action { logController.logServer("click append!") }
-        }
-        button("clear") {
-            action { logController.clear() }
+        buttonbar {
+            button("append") {
+                action { logController.logServer("click append!") }
+            }
+            button("clear") {
+                action { logController.clear() }
+            }
         }
     }
 }

@@ -3,6 +3,8 @@ package top.abosen.toys.notifierfx.view
 
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleStringProperty
+import javafx.stage.Modality
+import javafx.stage.StageStyle
 
 import tornadofx.*
 
@@ -11,7 +13,7 @@ import tornadofx.*
  * @date 2020/5/8
  */
 
-class ConfigScreen : View() {
+class ClientView : View("客户端") {
     val host = SimpleStringProperty(this, "host", config.string("host"))
     val port = SimpleIntegerProperty(this, "port", config.int("port", 13379))
 
@@ -22,14 +24,22 @@ class ConfigScreen : View() {
 
             buttonbar {
                 button("保存").action {
-                    with(config){
+                    with(config) {
                         set("host" to host.value)
                         set("port" to port.value)
                     }
                 }
             }
         }
+        buttonbar {
+             button("截图"){
+                action {
+                    primaryStage.hide()
+                    PrintScreenView.show()
+                }
 
+            }
+        }
     }
 }
 

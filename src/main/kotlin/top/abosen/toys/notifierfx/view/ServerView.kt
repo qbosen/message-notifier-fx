@@ -1,9 +1,8 @@
 package top.abosen.toys.notifierfx.view
 
 
-import top.abosen.toys.notifierfx.controller.ClientController
-import top.abosen.toys.notifierfx.model.ServerModel
-
+import top.abosen.toys.notifierfx.controller.LogController
+import top.abosen.toys.notifierfx.controller.ServerController
 import tornadofx.*
 
 /**
@@ -11,9 +10,10 @@ import tornadofx.*
  * @date 2020/5/8
  */
 class ServerView : View("服务端") {
+    private val logController: LogController by inject()
+    private val serverController: ServerController by inject()
 
-    val clientController: ClientController by inject()
-    private val model = ServerModel()
+    private val model = serverController.model
 
 
     override val root = form {
@@ -28,21 +28,38 @@ class ServerView : View("服务端") {
             }
             field("title:") {
                 tooltip("发送系统通知的标题")
-                textfield(model.title).required()
+                textfield(model.title).trimWhitespace()
             }
             field("content:") {
                 tooltip("发送系统通知的内容")
-                textfield(model.content).required()
+                textfield(model.content).trimWhitespace()
             }
 
             buttonbar {
                 button("Reset").also { tooltip("撤销修改") }.action {
                     model.rollback()
+                    logController.logServer("Cancel modification!")
                 }
                 button("Save").also { tooltip("保存修改") }.action {
                     model.commit {
-
+                        logController.logServer("Save modification!")
                     }
+                }
+            }
+        }
+
+        buttonbar {
+            button("Run") {
+                disableWhen(serverController.running)
+                action {
+                    serverController.run()
+                }
+            }
+
+            button("Stop") {
+                disableWhen(!serverController.running)
+                action {
+                    serverController.stop()
                 }
             }
         }

@@ -28,10 +28,10 @@ class ServerModel : ItemViewModel<ServerConfig>() {
     private val KEY_CONTENT = "server.content"
     private val KEY_TITLE = "server.title"
 
-    val port = bind { SimpleIntegerProperty(item?.port, "", config.int(KEY_PORT, 13379)) }
-    val interval = bind { SimpleIntegerProperty(item?.notifyInterval, "", config.int(KEY_INTERVAL, 10)) }
-    val content = bind { SimpleStringProperty(item?.content, "", config.string(KEY_CONTENT, "收到一条消息!!!")) }
-    val title = bind { SimpleStringProperty(item?.title, "", config.string(KEY_TITLE, "消息通知")) }
+    val port = SimpleIntegerProperty(item?.port, "", config.int(KEY_PORT, 13379))
+    val interval = SimpleIntegerProperty(item?.notifyInterval, "", config.int(KEY_INTERVAL, 10))
+    val content = SimpleStringProperty(item?.content, "", config.string(KEY_CONTENT, "收到一条消息!!!"))
+    val title = SimpleStringProperty(item?.title, "", config.string(KEY_TITLE, "消息通知"))
 
 
     override fun onCommit() {
