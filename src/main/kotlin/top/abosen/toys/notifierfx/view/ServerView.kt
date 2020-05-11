@@ -1,7 +1,9 @@
 package top.abosen.toys.notifierfx.view
 
+
 import top.abosen.toys.notifierfx.controller.ClientController
 import top.abosen.toys.notifierfx.model.ServerModel
+
 import tornadofx.*
 
 /**
@@ -9,6 +11,7 @@ import tornadofx.*
  * @date 2020/5/8
  */
 class ServerView : View("服务端") {
+
     val clientController: ClientController by inject()
     private val model = ServerModel()
 

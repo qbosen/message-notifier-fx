@@ -1,12 +1,15 @@
 package top.abosen.toys.notifierfx.view
 
+
 import top.abosen.toys.notifierfx.controller.LogController
+
 import tornadofx.*
 
 /**
  * @author qiubaisen
  * @date 2020/5/8
  */
+
 class LogView : View() {
     private val logController: LogController by inject()
 

@@ -1,18 +1,15 @@
 package top.abosen.toys.notifierfx.view
 
+
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleStringProperty
+
 import tornadofx.*
 
 /**
  * @author qiubaisen
  * @date 2020/5/8
  */
-class ClientView : View("客户端") {
-    override val root = borderpane {
-
-    }
-}
 
 class ConfigScreen : View() {
     val host = SimpleStringProperty(this, "host", config.string("host"))
@@ -35,3 +32,4 @@ class ConfigScreen : View() {
 
     }
 }
+
